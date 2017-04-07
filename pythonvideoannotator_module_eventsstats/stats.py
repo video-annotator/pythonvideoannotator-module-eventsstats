@@ -51,6 +51,11 @@ class Stats(BaseWidget):
 
 		self.__load_events()
 
+		if conf.PYFORMS_USE_QT5:
+			self.layout().setContentsMargins(5,5,5,5)
+		else:
+			self.layout().setMargin(5)
+
 		self.setMinimumWidth(800)
 		self.setMinimumHeight(600)
 
