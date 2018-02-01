@@ -9,13 +9,13 @@ from PyQt4 import QtGui
 
 import pyforms
 from pyforms import BaseWidget
-from pyforms.Controls import ControlProgress
-from pyforms.Controls import ControlButton
-from pyforms.Controls import ControlCheckBox
-from pyforms.Controls import ControlVisVis
-from pyforms.Controls import ControlNumber
-from pyforms.Controls import ControlBoundingSlider
-from pyforms.Controls import ControlCheckBoxList
+from pyforms.controls import ControlProgress
+from pyforms.controls import ControlButton
+from pyforms.controls import ControlCheckBox
+from pyforms.controls import ControlVisVis
+from pyforms.controls import ControlNumber
+from pyforms.controls import ControlBoundingSlider
+from pyforms.controls import ControlCheckBoxList
 
 
 class Stats(BaseWidget):
@@ -51,10 +51,8 @@ class Stats(BaseWidget):
 
 		self.__load_events()
 
-		if conf.PYFORMS_USE_QT5:
-			self.layout().setContentsMargins(5,5,5,5)
-		else:
-			self.layout().setMargin(5)
+		self.set_margin(5)
+        
 
 		self.setMinimumWidth(800)
 		self.setMinimumHeight(600)
