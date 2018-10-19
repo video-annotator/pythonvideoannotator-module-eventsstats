@@ -8,7 +8,7 @@ import csv
 from PyQt4 import QtGui
 
 import pyforms
-from pyforms import BaseWidget
+from pyforms.basewidget import BaseWidget
 from pyforms.controls import ControlProgress
 from pyforms.controls import ControlButton
 from pyforms.controls import ControlCheckBox
