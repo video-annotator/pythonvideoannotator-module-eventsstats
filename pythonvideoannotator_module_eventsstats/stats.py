@@ -67,7 +67,7 @@ class Stats(BaseWidget):
 		start = None
 		end = None
 		for track in self._parent.tracks:
-			for delta in track.periods:
+			for delta in track.events:
 				if delta.title not in event_types:
 					self._events += (delta.title, True)
 					event_types.append(delta.title)
@@ -189,16 +189,16 @@ class Stats(BaseWidget):
 			self.__do_the_calculations()
 
 			events_to_include = self._events.value
-			all_periods_ordered_by_time = sorted(self._get_all_periods(), key=lambda x: x._begin)
+			all_events_ordered_by_time = sorted(self._get_all_events(), key=lambda x: x._begin)
 
 			# these are special point events to mark experiment start and end
-			experiment_start_frame_idx = int(all_periods_ordered_by_time[0].begin)
-			experiment_end_frame_idx = int(all_periods_ordered_by_time[-1].begin)
+			experiment_start_frame_idx = int(all_events_ordered_by_time[0].begin)
+			experiment_end_frame_idx = int(all_events_ordered_by_time[-1].begin)
 
 			try:
 				# these are special point events to mark experiment start and end
-				events_to_include.remove(all_periods_ordered_by_time[0]._title)
-				events_to_include.remove(all_periods_ordered_by_time[-1].title)
+				events_to_include.remove(all_events_ordered_by_time[0]._title)
+				events_to_include.remove(all_events_ordered_by_time[-1].title)
 			except Exception as err:
 				print("Warning: {0}".format(str(err)))
 
@@ -286,11 +286,11 @@ class Stats(BaseWidget):
 		self._graph.value = self._values2display
 		self._graph.legends = self._legends
 
-	def _get_all_periods(self):
+	def _get_all_events(self):
 		self._time = self._parent
 		res = []
 		for track in self._time.tracks:
-			for delta in track._periods:
+			for delta in track._events:
 				res.append(delta)
 		return res
 
